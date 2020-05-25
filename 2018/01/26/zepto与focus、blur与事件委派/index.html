@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="— focusin、focusout focus、blur    冒泡支持 支持 不支持   浏览器支持 现在所有浏览器都支持，但以前firefox52以下不支持 所有浏览器都支持   注册focus事件以下是经简化后zepto处理注册focus事件的代码。运行代码，可以观察到当input获得焦点时触发了form注册focus时的回调函数。 123456789101112131415161">
+<meta property="og:type" content="article">
+<meta property="og:title" content="zepto与focus&#x2F;blur与事件委派">
+<meta property="og:url" content="http://yoursite.com/2018/01/26/zepto%E4%B8%8Efocus%E3%80%81blur%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%B4%BE/index.html">
+<meta property="og:site_name" content="JinZhan&#39;s Blog">
+<meta property="og:description" content="— focusin、focusout focus、blur    冒泡支持 支持 不支持   浏览器支持 现在所有浏览器都支持，但以前firefox52以下不支持 所有浏览器都支持   注册focus事件以下是经简化后zepto处理注册focus事件的代码。运行代码，可以观察到当input获得焦点时触发了form注册focus时的回调函数。 123456789101112131415161">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf53ao51dpj30m80eu4eu.jpg">
+<meta property="article:published_time" content="2018-01-26T12:25:28.000Z">
+<meta property="article:modified_time" content="2020-05-25T15:03:04.149Z">
+<meta property="article:author" content="YeJinZhan">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf53ao51dpj30m80eu4eu.jpg">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>zepto与focus/blur与事件委派</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/categories/">Categories</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/07/25/Element%20UI%20table%E7%BB%84%E4%BB%B6%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/01/26/zepto%E4%B8%8Efocus%E3%80%81blur%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%B4%BE/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/01/26/zepto%E4%B8%8Efocus%E3%80%81blur%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%B4%BE/&text=zepto与focus/blur与事件委派" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/01/26/zepto%E4%B8%8Efocus%E3%80%81blur%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%B4%BE/&title=zepto与focus/blur与事件委派" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/01/26/zepto%E4%B8%8Efocus%E3%80%81blur%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%B4%BE/&is_video=false&description=zepto与focus/blur与事件委派" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=zepto与focus/blur与事件委派&body=Check out this article: http://yoursite.com/2018/01/26/zepto%E4%B8%8Efocus%E3%80%81blur%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%B4%BE/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/01/26/zepto%E4%B8%8Efocus%E3%80%81blur%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%B4%BE/&title=zepto与focus/blur与事件委派" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/01/26/zepto%E4%B8%8Efocus%E3%80%81blur%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%B4%BE/&title=zepto与focus/blur与事件委派" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/01/26/zepto%E4%B8%8Efocus%E3%80%81blur%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%B4%BE/&title=zepto与focus/blur与事件委派" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/01/26/zepto%E4%B8%8Efocus%E3%80%81blur%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%B4%BE/&title=zepto与focus/blur与事件委派" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/01/26/zepto%E4%B8%8Efocus%E3%80%81blur%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%B4%BE/&name=zepto与focus/blur与事件委派&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://yoursite.com/2018/01/26/zepto%E4%B8%8Efocus%E3%80%81blur%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%B4%BE/&t=zepto与focus/blur与事件委派" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#注册focus事件"><span class="toc-number">1.</span> <span class="toc-text">注册focus事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注册focusin事件"><span class="toc-number">2.</span> <span class="toc-text">注册focusin事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">4.</span> <span class="toc-text">参考</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        zepto与focus/blur与事件委派
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">JinZhan's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2018-01-26T12:25:28.000Z" itemprop="datePublished">2018-01-26</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf53ao51dpj30m80eu4eu.jpg" alt="image"></p>
+<table>
+<thead>
+<tr>
+<th>—</th>
+<th>focusin、focusout</th>
+<th>focus、blur</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>冒泡支持</td>
+<td>支持</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>浏览器支持</td>
+<td>现在所有浏览器都支持，但以前firefox52以下不支持</td>
+<td>所有浏览器都支持</td>
+</tr>
+</tbody></table>
+<h2 id="注册focus事件"><a href="#注册focus事件" class="headerlink" title="注册focus事件"></a>注册focus事件</h2><p>以下是经简化后zepto处理注册focus事件的代码。运行代码，可以观察到当input获得焦点时触发了form注册focus时的回调函数。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>foucus事件委派<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">""</span> <span class="attr">style</span>=<span class="string">"padding: 50px;background-color: #00b4fd;width: 200px;height: 200px"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">value</span>=<span class="string">"helloworld"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">	<span class="comment">//除了IE,其他浏览器的window对象中都没有onfocusin属性，但是其他浏览器addEventListener('focusin')有效</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> focusinSupported = <span class="string">'onfocusin'</span> <span class="keyword">in</span> <span class="built_in">window</span>,</span></span><br><span class="line"><span class="javascript">        form = <span class="built_in">document</span>.forms[<span class="number">0</span>],</span></span><br><span class="line"><span class="actionscript">        focus = &#123;focus: <span class="string">'focusin'</span>, blur: <span class="string">'focusout'</span>&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript">    <span class="function"><span class="keyword">function</span> <span class="title">callback</span><span class="params">(event)</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">    	 <span class="built_in">console</span>.log(event.target.tagName)<span class="comment">//INPUT</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(event.type,event.bubbles)<span class="comment">//event.bubbles为false表明当前事件不会向上冒泡</span></span></span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.style.background = <span class="string">"red"</span></span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">    <span class="comment">//当type为focus且浏览器支持onfocusin，则focus -&gt; focusin</span></span></span><br><span class="line"><span class="actionscript">    <span class="function"><span class="keyword">function</span> <span class="title">realEvent</span><span class="params">(type)</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">return</span> focusinSupported &amp;&amp; focus[type] || type</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">    <span class="function"><span class="keyword">function</span> <span class="title">eventCapture</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">        <span class="comment">//不支持onfocusin则在捕获阶段触发事件</span></span></span><br><span class="line"><span class="actionscript">        <span class="keyword">return</span> !focusinSupported ? <span class="literal">true</span> : <span class="literal">false</span></span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">    form.addEventListener(realEvent(<span class="string">'focus'</span>), callback, eventCapture());</span></span><br><span class="line"><span class="actionscript"><span class="comment">//    form.addEventListener(realEvent('focus'), callback, false);//focus不会向上冒泡，这样写不会触发回调</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>代码比较少，下面说一下重点。</p>
+<p>zepto的处理focus事件注册流程大致如下</p>
+<ul>
+<li><code>为了有事件冒泡以完成事件委派</code>，一般情况下zepto用focusin、focusout代替focus、blur</li>
+<li>在浏览器不支持focusin、focusout的情况下，只能用focus、blur在捕获阶段触发回调，间接做到事件委派。</li>
+</ul>
+<p>IE9开始使用DOM事件模型，<code>zepto统一用addEventListener注册事件</code>，不支持IE9以下的版本，zepto中的on方法内部调用add方法，add方法经过多步处理，最后是这样注册一个事件的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">form.addEventListener(realEvent(<span class="string">'focus'</span>), callback, eventCapture());</span><br></pre></td></tr></table></figure>
+
+<p>zepto是用以下方式来判断浏览器是否支持focusin事件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> focusinSupported = <span class="string">'onfocusin'</span> <span class="keyword">in</span> <span class="built_in">window</span></span><br></pre></td></tr></table></figure>
+
+<p>除了IE,其他浏览器的window对象中都没有onfocusin属性，其他浏览器中focusinSupported为false，但其他浏览器也支持focusin，用addEventListener(‘focusin’)是有效的。下表是zepto注册focus事件的两个重要判断</p>
+<table>
+<thead>
+<tr>
+<th>—</th>
+<th>IE9+</th>
+<th>FF、Chrome</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>realEvent</td>
+<td>focusinSupported:true， focus 转换为 focusin</td>
+<td>focusinSupported:false，focus 不作转换</td>
+</tr>
+<tr>
+<td>eventCapture</td>
+<td>false，冒泡阶段触发回调</td>
+<td>true，捕获阶段触发回调</td>
+</tr>
+</tbody></table>
+<p>在捕获阶段获取目标对象同样可以实现事件委派，原因可以参考以下引用</p>
+<blockquote>
+<p>即使”DOM2级事件”规范明确要求捕获阶段不会涉及事件目标(作者注释：即event.target)，但IE9、Safari、Chrome、Firefox 和 Opera9.5及更高版本都会在捕获阶段触发事件对象上的事件。结果，就是有两个机会在目标对象上面操作事件。<br>&lt;&lt;Javascript高级编程&gt;&gt;第三版 13.1.3 DOM事件流 p348</p>
+</blockquote>
+<h2 id="注册focusin事件"><a href="#注册focusin事件" class="headerlink" title="注册focusin事件"></a>注册focusin事件</h2><p>除了IE9-，在zepto中，其他主流浏览器都可以注册focusin事件</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>现在所有浏览都已经支持foucsin，未来属于支持冒泡的focusin</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/Events/focusin" target="_blank" rel="noopener">MDN focusin浏览器支持</a></li>
+<li>&lt;&lt;Javascript高级编程&gt;&gt;第三版 13.1.3 DOM事件流</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/categories/">Categories</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#注册focus事件"><span class="toc-number">1.</span> <span class="toc-text">注册focus事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注册focusin事件"><span class="toc-number">2.</span> <span class="toc-text">注册focusin事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">4.</span> <span class="toc-text">参考</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/01/26/zepto%E4%B8%8Efocus%E3%80%81blur%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%B4%BE/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/01/26/zepto%E4%B8%8Efocus%E3%80%81blur%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%B4%BE/&text=zepto与focus/blur与事件委派" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/01/26/zepto%E4%B8%8Efocus%E3%80%81blur%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%B4%BE/&title=zepto与focus/blur与事件委派" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/01/26/zepto%E4%B8%8Efocus%E3%80%81blur%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%B4%BE/&is_video=false&description=zepto与focus/blur与事件委派" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=zepto与focus/blur与事件委派&body=Check out this article: http://yoursite.com/2018/01/26/zepto%E4%B8%8Efocus%E3%80%81blur%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%B4%BE/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/01/26/zepto%E4%B8%8Efocus%E3%80%81blur%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%B4%BE/&title=zepto与focus/blur与事件委派" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/01/26/zepto%E4%B8%8Efocus%E3%80%81blur%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%B4%BE/&title=zepto与focus/blur与事件委派" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/01/26/zepto%E4%B8%8Efocus%E3%80%81blur%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%B4%BE/&title=zepto与focus/blur与事件委派" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/01/26/zepto%E4%B8%8Efocus%E3%80%81blur%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%B4%BE/&title=zepto与focus/blur与事件委派" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/01/26/zepto%E4%B8%8Efocus%E3%80%81blur%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%B4%BE/&name=zepto与focus/blur与事件委派&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://yoursite.com/2018/01/26/zepto%E4%B8%8Efocus%E3%80%81blur%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%B4%BE/&t=zepto与focus/blur与事件委派" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2020
+    YeJinZhan
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/categories/">Categories</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
