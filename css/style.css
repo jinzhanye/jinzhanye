@@ -15,8 +15,8 @@
   position: relative;
   top: -10px; }
 
-.valine-container .vsys,
-.valine-container .vpower.txt-right {
+#valine-container .vsys,
+#valine-container .vpower.txt-right {
   display: none !important; }
 
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
@@ -388,7 +388,7 @@ body {
   font-weight: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  line-height: 1.65;
+  line-height: 1.67;
   color: #34495e;
   background: #fefefe;
   scroll-behavior: smooth;
@@ -633,6 +633,10 @@ h6 {
   .post .post-content h6 {
     font-weight: bold;
     font-family: Athelas, STHeiti, Microsoft Yahei, serif; }
+  .post .post-content h2 {
+    padding-bottom: .6rem;
+    margin-bottom: .4rem;
+    border-bottom: 1px double rgba(0, 0, 0, 0.1); }
   .post .post-content .headerlink:hover {
     border-bottom: 0; }
   .post .post-content a {
@@ -643,10 +647,11 @@ h6 {
     .post .post-content a.fancybox {
       border: 0; }
   .post .post-content ul {
-    padding-left: 0;
-    list-style: inside; }
+    list-style: disc; }
     .post .post-content ul li input[type="checkbox"] {
       margin-right: 5px; }
+    .post .post-content ul li > p {
+      display: contents; }
   .post .post-content blockquote {
     margin: 2em 0;
     padding: 10px 20px;
@@ -927,7 +932,8 @@ h6 {
     .post .post-copyright .copyright-item {
       margin: 5px 0; }
       .post .post-copyright .copyright-item a {
-        color: #c05b4d; }
+        color: #c05b4d;
+        word-break: break-all; }
   .post .post-reward {
     margin-top: 20px;
     padding-top: 10px;

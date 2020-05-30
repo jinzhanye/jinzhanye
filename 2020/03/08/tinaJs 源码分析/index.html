@@ -134,7 +134,7 @@
     <div class="post-toc-content">
       <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#是什么"><span class="toc-text">是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#概览"><span class="toc-text">概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mix"><span class="toc-text">mix</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关联-wx-Page、tina-Page"><span class="toc-text">关联 wx-Page、tina-Page</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构建-tina-Page"><span class="toc-text">构建 tina-Page</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#改变执行上下文"><span class="toc-text">改变执行上下文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#追加生命周期勾子"><span class="toc-text">追加生命周期勾子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#compute-实现原理"><span class="toc-text">compute 实现原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-text">小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
     </div>
-  </div><div class="post-content"><p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcmm4033dzj30yd0j01bv.jpg" alt="封面"></p>
+  </div><div class="post-content"><p><img src="https://gitee.com/yejinzhan/images/raw/master/20200530155744.png" alt="Cover"></p>
 <p>目前公司团队小程序框架使用的是 <a href="https://tina.js.org/#/" target="_blank" rel="noopener">tinaJs</a>，这篇文章将讲解这个框架的源码。阅读文章时可以对照着这个<a href="https://github.com/jinzhanye/my-tina/tree/master/test/sayhi/libraries" target="_blank" rel="noopener">小工程</a>阅读源码，这个小工程主要是对 tina 加了更多的注释及示例。</p>
 <h2 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h2><p>tinaJs 是一款轻巧的渐进式微信小程序框架，不仅能充分利用原生小程序的能力，还易于调试。<br>这个框架主要是对 Component、Page 两个全局方法进行了封装，本文主要介绍 <a href="">tinaJS 1.0.0</a> 的 <code>Paeg.define</code> 内部做了些什么。<code>Component.define</code> 与 <code>Paeg.define</code>相似，理解 <code>Paeg.define</code> 之后自然也就理解 <code>Component.define</code>。为什么是讲解 1.0.0 ？因为第一个版本的代码相对于最新版本主干内容更更清晰更容易上手。</p>
 <p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcmjsc8os9j309y0a4q31.jpg" alt="类图"></p>
@@ -213,9 +213,9 @@
   </div>
       <footer class="post-footer">
         
-        <nav class="post-nav"><a class="prev" href="/2020/03/08/test/">
+        <nav class="post-nav"><a class="prev" href="/2020/03/15/mina-loader%20%E6%BA%90%E7%A0%81%E6%B5%85%E6%9E%90/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">测试文章</span>
+        <span class="prev-text nav-default">mina-loader 源码浅析</span>
         <span class="prev-text nav-mobile">上一篇</span>
       </a>
     <a class="next" href="/2019/04/27/mxGraph%20%E5%85%A5%E9%97%A8%E5%AE%9E%E4%BE%8B%E6%95%99%E7%A8%8B/">
@@ -238,7 +238,7 @@
           appKey: 'WM7KSHWQxXSOlxGBieADbzMy',
           lang: 'zh-CN',
           placeholder: '',
-          avatar: 'monsterid',
+          avatar: 'hide',
           pageSize: 10,
           recordIP: true,
           visitor: visitor
