@@ -13,7 +13,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
-<meta name="description" content="《代码整洁之道》读书笔记"/><link rel="alternate" href="/default" title="JinZhan's Blog"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.0" />
+<meta name="description" content="《代码整洁之道》读书笔记"/><meta name="keywords" content="叶锦湛、YejinZhan、开发、技术、前端、生活感悟、思考" /><link rel="alternate" href="/default" title="JinZhan de boke"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.0" />
 <link rel="canonical" href="http://yoursite.com/2018/09/04/《代码整洁之道》读书笔记/"/>
 
 <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
@@ -37,12 +37,12 @@
   window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":"","latex":false};
 </script>
 
-    <title>《代码整洁之道》读书笔记 - JinZhan's Blog</title>
+    <title>《代码整洁之道》读书笔记 - JinZhan de boke</title>
   <meta name="generator" content="Hexo 4.2.1"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
-    <a href="/." class="logo">JinZhan's Blog</a>
+    <a href="/." class="logo">JinZhan de boke</a>
   </div>
   <div class="mobile-navbar-icon">
     <span></span>
@@ -65,7 +65,7 @@
 </nav>
 <div class="container" id="mobile-panel">
       <header id="header" class="header"><div class="logo-wrapper">
-  <a href="/." class="logo">JinZhan's Blog</a>
+  <a href="/." class="logo">JinZhan de boke</a>
 </div>
 
 <nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
@@ -103,7 +103,7 @@
     </header>
 
     <div class="post-toc" id="post-toc">
-    <h2 class="post-toc-title">文章目录</h2>
+    <h2 class="post-toc-title">目录</h2>
     <div class="post-toc-content">
       <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#有意义的命名"><span class="toc-text">有意义的命名</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#做有意义的区分"><span class="toc-text">做有意义的区分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#避免思维映射"><span class="toc-text">避免思维映射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类名与方法名"><span class="toc-text">类名与方法名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#每个概念对应一个词"><span class="toc-text">每个概念对应一个词</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#别用双关语"><span class="toc-text">别用双关语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用解决方案领域名称"><span class="toc-text">使用解决方案领域名称</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#动词与关键字"><span class="toc-text">动词与关键字</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数"><span class="toc-text">函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#短小"><span class="toc-text">短小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#只做一件事"><span class="toc-text">只做一件事</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参数"><span class="toc-text">参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#无副作用"><span class="toc-text">无副作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分隔指令与询问"><span class="toc-text">分隔指令与询问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何写出好函数"><span class="toc-text">如何写出好函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注释"><span class="toc-text">注释</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#好的注释"><span class="toc-text">好的注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#坏的注释"><span class="toc-text">坏的注释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#格式"><span class="toc-text">格式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#垂直距离"><span class="toc-text">垂直距离</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#错误处理"><span class="toc-text">错误处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#抽离Try-Catch代码块"><span class="toc-text">抽离Try&#x2F;Catch代码块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用非受控异常"><span class="toc-text">使用非受控异常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#给出异常发生的环境说明"><span class="toc-text">给出异常发生的环境说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#依调用者需要定义异常类"><span class="toc-text">依调用者需要定义异常类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他"><span class="toc-text">其他</span></a></li></ol></li></ol>
     </div>
