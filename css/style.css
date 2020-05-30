@@ -19,6 +19,13 @@
 #valine-container .vpower.txt-right {
   display: none !important; }
 
+.post .post-header .post-meta .post-visits {
+  display: none !important; }
+
+@media screen and (max-width: 960px) {
+  .post {
+    padding-top: 1.5em !important; } }
+
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 /**
  * 1. Set default font family to sans-serif.
@@ -528,7 +535,7 @@ h6 {
   margin-bottom: 20px; }
 
 .post {
-  padding: 1.5em 0; }
+  padding: 0 0 1.5em 0; }
   .post + .post {
     border-top: 1px solid #e6e6e6; }
   .post .post-header {
