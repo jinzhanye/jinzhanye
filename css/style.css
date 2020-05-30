@@ -642,8 +642,8 @@ h6 {
     .post .post-content blockquote p {
       margin: 0; }
   .post .post-content img {
-    border: 3px solid rgba(0, 0, 0, 0.125);
-    border-radius: 5px;
+    border: 5px solid rgba(0, 0, 0, 0.125);
+    border-radius: 10px;
     display: inline-block;
     max-width: 100%; }
   .post .post-content .table-responsive {
