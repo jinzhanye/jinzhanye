@@ -3,7 +3,7 @@
   font-family: 'Balsamiq_Sans';
   src: url("../fonts/Balsamiq_Sans/BalsamiqSans-Regular.ttf"); }
 
-.vsys, .social-links {
+.social-links {
   display: none !important; }
 
 .copyright .power-by,
@@ -14,6 +14,10 @@
 .copyright .copyright-year {
   position: relative;
   top: -10px; }
+
+.valine-container .vsys,
+.valine-container .vpower.txt-right {
+  display: none !important; }
 
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 /**
