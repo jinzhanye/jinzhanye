@@ -12,6 +12,7 @@
   top: -10px; }
 
 #valine-container .vsys,
+#valine-container .vempty,
 #valine-container .vpower.txt-right {
   display: none !important; }
 
