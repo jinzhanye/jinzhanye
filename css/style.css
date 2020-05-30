@@ -3,6 +3,18 @@
   font-family: 'Balsamiq_Sans';
   src: url("../fonts/Balsamiq_Sans/BalsamiqSans-Regular.ttf"); }
 
+.vsys, .social-links {
+  display: none !important; }
+
+.copyright .power-by,
+.copyright .theme-info,
+.copyright .division {
+  display: none !important; }
+
+.copyright .copyright-year {
+  position: relative;
+  top: -10px; }
+
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 /**
  * 1. Set default font family to sans-serif.
