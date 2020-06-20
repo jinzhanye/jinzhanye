@@ -19,6 +19,9 @@
 .post .post-header .post-meta .post-visits {
   display: none !important; }
 
+.post .post-copyright .copyright-item:nth-child(1), .post .post-copyright .copyright-item:nth-child(2) {
+  display: none; }
+
 @media screen and (max-width: 960px) {
   .post {
     padding-top: 1.5em !important; } }
