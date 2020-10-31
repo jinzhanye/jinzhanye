@@ -135,8 +135,8 @@
       <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#是什么"><span class="toc-text">是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#概览"><span class="toc-text">概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mix"><span class="toc-text">mix</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关联-wx-Page、tina-Page"><span class="toc-text">关联 wx-Page、tina-Page</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构建-tina-Page"><span class="toc-text">构建 tina-Page</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#改变执行上下文"><span class="toc-text">改变执行上下文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#追加生命周期勾子"><span class="toc-text">追加生命周期勾子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#compute-实现原理"><span class="toc-text">compute 实现原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-text">小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </div><div class="post-content"><p><img src="https://gitee.com/yejinzhan/images/raw/master/20200530155744.png" alt="Cover"></p>
-<p>目前公司团队小程序框架使用的是 <a href="https://tina.js.org/#/" target="_blank" rel="noopener">tinaJs</a>，这篇文章将讲解这个框架的源码。阅读文章时可以对照着这个<a href="https://github.com/jinzhanye/my-tina/tree/master/test/sayhi/libraries" target="_blank" rel="noopener">小工程</a>阅读源码，这个小工程主要是对 tina 加了更多的注释及示例。</p>
-<h2 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h2><p>tinaJs 是一款轻巧的渐进式微信小程序框架，不仅能充分利用原生小程序的能力，还易于调试。<br>这个框架主要是对 Component、Page 两个全局方法进行了封装，本文主要介绍 <a href="">tinaJS 1.0.0</a> 的 <code>Paeg.define</code> 内部做了些什么。<code>Component.define</code> 与 <code>Paeg.define</code>相似，理解 <code>Paeg.define</code> 之后自然也就理解 <code>Component.define</code>。为什么是讲解 1.0.0 ？因为第一个版本的代码相对于最新版本主干内容更更清晰更容易上手。</p>
+<p>目前公司团队小程序框架使用的是 <a href="https://tina.js.org/#/" target="_blank" rel="noopener">Tina.js</a>，这篇文章将讲解这个框架的源码。阅读文章时可以对照着这个<a href="https://github.com/jinzhanye/my-tina/tree/master/test/sayhi/libraries" target="_blank" rel="noopener">小工程</a>阅读源码，这个小工程主要是对 tina 加了更多的注释及示例。</p>
+<h2 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h2><p>Tina.js 是一款轻巧的渐进式微信小程序框架，不仅能充分利用原生小程序的能力，还易于调试。<br>这个框架主要是对 Component、Page 两个全局方法进行了封装，本文主要介绍 <a href="">Tina.js 1.0.0</a> 的 <code>Paeg.define</code> 内部做了些什么。<code>Component.define</code> 与 <code>Paeg.define</code>相似，理解 <code>Paeg.define</code> 之后自然也就理解 <code>Component.define</code>。为什么是讲解 1.0.0 ？因为第一个版本的代码相对于最新版本主干内容更更清晰更容易上手。</p>
 <p><img src="https://gitee.com/yejinzhan/images/raw/master/20200530175804.png" alt="类图"></p>
 <h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><p>为了避免混淆 tina 和原生的一些概念，这里先说明一下一些词的含义</p>
 <ul>
@@ -152,7 +152,7 @@
 <h2 id="mix"><a href="#mix" class="headerlink" title="mix"></a>mix</h2><p>tina 的 mixin 是靠 js 对对象做合并实现的，并没有使用原生的 <code>behaviors</code></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tinaPageOptions = <span class="keyword">this</span>.mix(PAGE_INITIAL_OPTIONS, [...BUILTIN_MIXINS, ...this.mixins, ...(tinaPageOptions.mixins || []), tinaPageOptions])</span><br></pre></td></tr></table></figure>
 
-<p>tinaJs 1.0.0 只支持一种合并策略，跟 Vue 的默认合并策略一样</p>
+<p>Tina.js 1.0.0 只支持一种合并策略，跟 Vue 的默认合并策略一样</p>
 <ul>
 <li>对于 methods 就是后面的覆盖前面的</li>
 <li>对于生命周期勾子和特殊勾子（onPullDownRefresh 等），就是变成一个数组，还是后面的先执行</li>
