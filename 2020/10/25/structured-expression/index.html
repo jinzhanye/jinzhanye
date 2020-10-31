@@ -13,8 +13,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
-<meta name="description" content="来实现一个缩水版Vuex"/><meta name="keywords" content="开发、技术、前端、生活感悟、思考" /><meta name="baidu-site-verification" content="m9i204t1Jp" /><meta name="google-site-verification" content="94qvVXsSDoUh6KqNcVDuk7VRZnM-1dnffUOamd_lIHU" /><link rel="alternate" href="/default" title="Jz de boke"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.0" />
-<link rel="canonical" href="http://yoursite.com/2018/11/17/来实现一个缩水版Vuex/"/>
+<meta name="description" content="小学老师曾经教过我们的「金字塔原理」"/><meta name="keywords" content="开发、技术、前端、生活感悟、思考" /><meta name="baidu-site-verification" content="m9i204t1Jp" /><meta name="google-site-verification" content="94qvVXsSDoUh6KqNcVDuk7VRZnM-1dnffUOamd_lIHU" /><link rel="alternate" href="/default" title="Jz de boke"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.0" />
+<link rel="canonical" href="http://yoursite.com/2020/10/25/structured-expression/"/>
 
 <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.0" />
@@ -59,7 +59,7 @@
   window.config = {"leancloud":{"app_id":"uMdsaHD1FNsezx8GJwYPHtfe-gzGzoHsz","app_key":"WM7KSHWQxXSOlxGBieADbzMy"},"toc":true,"fancybox":true,"pjax":"","latex":false};
 </script>
 
-    <title>来实现一个缩水版Vuex - Jz de boke</title>
+    <title>小学老师曾经教过我们的「金字塔原理」 - Jz de boke</title>
   <meta name="generator" content="Hexo 4.2.1"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -112,39 +112,27 @@
         <div class="content-wrapper">
           <div id="content" class="content"><article class="post">
     <header class="post-header">
-      <h1 class="post-title">来实现一个缩水版Vuex
+      <h1 class="post-title">小学老师曾经教过我们的「金字塔原理」
         </h1>
 
       <div class="post-meta">
         <span class="post-time">
-          2018-11-17
+          2020-10-25
         </span><span class="post-category">
-            <a href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+            <a href="/categories/%E8%A7%82%E7%82%B9%E4%B8%8E%E6%84%9F%E6%83%B3/">观点与感想</a>
             </span>
         <span class="post-visits"
-             data-url="/2018/11/17/%E6%9D%A5%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%BC%A9%E6%B0%B4%E7%89%88Vuex/"
-             data-title="来实现一个缩水版Vuex">
+             data-url="/2020/10/25/structured-expression/"
+             data-title="小学老师曾经教过我们的「金字塔原理」">
           阅读次数 0
         </span>
         </div>
     </header>
 
-    <div class="post-toc" id="post-toc">
-    <h2 class="post-toc-title">目录</h2>
-    <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#install"><span class="toc-text">install</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#监听-store"><span class="toc-text">监听 store</span></a></li></ol>
-    </div>
-  </div><div class="post-content"><blockquote>
-<p>对 Vuex 源码进行浓缩，DIY 一个小型 Vuex</p>
-</blockquote>
-<p>功能如下</p>
-<ol>
-<li>通过 <code>$store.commit</code> 改变 <code>$store.state</code></li>
-<li>实现 strict model</li>
-</ol>
-<p><a href="https://github.com/jinzhanye/diy-vuex" target="_blank" rel="noopener">源码</a>约70行左右比较好理解，下面讲解一下两个比较重要的点。</p>
-<h2 id="install"><a href="#install" class="headerlink" title="install"></a>install</h2><p><code>Vue.use(Vuex)</code>实际上调用的是 Vuex 的 <code>install</code> 方法，该方法在每个组件的 <code>beforeCreate</code> 钩子中为当前组件注入 <code>$store</code>，使所有组件的 <code>$store</code> 属性都指向同一个对象，也就是创建 Vue 实例时传入的 <code>store</code> 对象。</p>
-<h2 id="监听-store"><a href="#监听-store" class="headerlink" title="监听 store"></a>监听 store</h2><p>为什么当 state 对象发生变化时视图会被更新？原因是 store 内部创建了一个 Vue 对象对 state 进行监听(见源码 <code>resetStoreVM</code> 方法)。而且上面也提到，使用 Vuex 后，所有组件的 <code>$store</code> 都引用的都是同一个 store。所以当 state 变化时，绑定了 state 的视图都会更新。</p>
+    <div class="post-content"><p><img src="https://gitee.com/yejinzhan/images/raw/master/20201031145938.jpeg" alt=""></p>
+<p>这周推荐一本书 - <a href="https://book.douban.com/subject/4882120" target="_blank" rel="noopener">《金字塔原理》</a>，讲的是如何用「结构化」的方式去思考、表达，对于日常工作很有帮助。</p>
+<p>为什么推荐这本书呢？事因是这样的，这周梳理接入小程序第三方平台流程花了大概一天半时间，最后把流程弄清楚发现其实并不复杂，如果能更快地理解文档内容可能半天就可以梳理完。看微信的文档有些难以理解，但就是不清楚为什么难以理解，后来想来想去总算是发现了些问题。一般的技术文档像 Vue、React 都会有两份文档，一份叫「教程」就是对库的使用做一个完整的说明，看完后就可以简单做个 Todo List 了。一份叫「API」，也就是字典，哪个 API 不懂就去查一查，平时没事不会去看。反观微信第三方平台接入的文档就不太走心，「教程」部分与「API」部分糅杂，读者在阅读「教程」的情况下防不胜防就来句「关于 xx 内容参考 xx（一个跳转链接）」，这就导致读者在没有了解整体流程的情况下在细枝末节间跳来跳去，阻碍读者理解。</p>
+<p>那么文档或者平时与人沟通怎样才能更好地表达呢？《金字塔原理》一书讲的就是如何使用「结构化表达」来解决这个问题。「结构化表达」简单来说就是小学老师指导写作文的时候经常提的「总分总」结构，重要的内容放前面，先把整体大纲（比如事情的背景、接下来要哪些模块）简单讲一遍。后面内容围绕中心内容展示详细讲，每段开头第一句作为中心句。内容层层递进，用程序员之间的话来说就是要用「广度遍历」不要用「深度遍历」。这样子受众在接受我们信息的时候就始终是从全局上去理解我们的内容，更加容易理解我们传达的信息。</p>
 
       </div>
       <div class="post-copyright">
@@ -154,7 +142,7 @@
     </p>
     <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="http://yoursite.com/2018/11/17/%E6%9D%A5%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%BC%A9%E6%B0%B4%E7%89%88Vuex/">http://yoursite.com/2018/11/17/%E6%9D%A5%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%BC%A9%E6%B0%B4%E7%89%88Vuex/</a>
+      <a href="http://yoursite.com/2020/10/25/structured-expression/">http://yoursite.com/2020/10/25/structured-expression/</a>
     </p>
     <p class="copyright-item">
       <span>许可协议: </span><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/legalcode.zh-Hans" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
@@ -162,13 +150,8 @@
   </div>
       <footer class="post-footer">
         
-        <nav class="post-nav"><a class="prev" href="/2019/03/02/%E8%AE%B0%E4%B8%80%E6%AC%A1%20Vue%20%E9%A1%B9%E7%9B%AE%E9%87%8D%E6%9E%84/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">记一次 Vue 项目重构</span>
-        <span class="prev-text nav-mobile">上一篇</span>
-      </a>
-    <a class="next" href="/2018/09/04/%E3%80%8A%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E4%B9%8B%E9%81%93%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
-        <span class="next-text nav-default">《代码整洁之道》读书笔记</span>
+        <nav class="post-nav"><a class="next" href="/2020/08/22/the-effective-executive/">
+        <span class="next-text nav-default">如何卓有成效---读《卓有成效的管理者》</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>
